@@ -16,14 +16,20 @@
             const passwordValue = Password.value; 
             const emailValue = Email.value;
 
-            console.log(passwordValue)
+            enviarDatos(emailValue)
         });
         
-        fetch('http://localhost:3000/login')
-        .then(res => res.json())
-        .then(users => {
-            console.log(users)
-        })
+        const enviarDatos = (emailValue) => {
+            fetch(`http://localhost:3000/login/${emailValue}`)
+            .then(res => {
+                if(res.ok) {
+                    alert('Datos enviados')
+                }
+
+         })
+       
+        }
+
     </script>
 <body>
     <main>
