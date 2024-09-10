@@ -1,11 +1,14 @@
 import express from 'express';
+import {readJSON } from './utils/lecturaJSON.js'
+
+const users =  readJSON('../user.json');
 
 const app = express()
 const port = process.env.PORT ?? 3000
 
 
-app.get('/',(req,res) => {
-    res.send('Hello World')
+app.get('/login',(req,res) => {
+    res.send(users).json
 })
 
 app.listen(port, () => {
