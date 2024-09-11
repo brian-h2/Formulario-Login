@@ -11,21 +11,26 @@
             const Password = document.getElementById('exampleInputPassword1')
             const buttonSubmit = document.getElementById('btn-submit');
 
+            const home = docuemtn.getElementById('home')
+
         buttonSubmit.addEventListener('click', (e) => {
             e.preventDefault(); 
             const passwordValue = Password.value; 
             const emailValue = Email.value;
-
-            enviarDatos(emailValue)
+            console.log(passwordValue)
+            enviarDatos(emailValue,passwordValue)
         });
         
-        const enviarDatos = (emailValue) => {
-            fetch(`http://localhost:3000/login/${emailValue}`)
+        const enviarDatos = (emailValue,passwordValue) => {
+            fetch(`http://localhost:3000/login/${emailValue}.${passwordValue}`, {
+                method: 'GET'
+            })
             .then(res => {
                 if(res.ok) {
-                    alert('Datos enviados')
+                    
+                } else{
+                    alert('Usuario no encontrado')
                 }
-
          })
        
         }
@@ -33,6 +38,8 @@
     </script>
 <body>
     <main>
+        <div class="home" id="home">
+        </div>
         <form class="w-75 d-flex flex-column m-auto">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>

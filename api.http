@@ -2,4 +2,4 @@ GET http://localhost:3000/login
 
 ###
 
-GET http://localhost:3000/login/brianheredia200309@gmail.com
+GET http://localhost:3000/login/brianheredia200309@gmail.com.1234
