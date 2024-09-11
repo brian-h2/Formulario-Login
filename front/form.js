@@ -14,8 +14,23 @@ const buttonRegisterUser = document.getElementById('btn-register-user');
 // Evento para el botón "Registrarse"
 buttonRegisterUser.addEventListener('click', (e) => {
     e.preventDefault();
-
+    const emailRegister = EmailRegister.value;
+    const passwordRegister = PasswordRegister.value;
+    publicarDatos(emailRegister,passwordRegister)
 });
+
+const publicarDatos = (emailRegister,passwordRegister) => {
+    fetch(`http://localhost:3000/login/register${emailRegister}.${passwordRegister}`, {
+        method: 'POST'
+    })
+    .then(res => {
+        if (res.ok) {
+            alert('Registrado correctamente')
+        } else {
+            alert('Usuario no encontrado');
+        }
+    });
+}
 
 // Evento para enviar los datos del formulario de login
 buttonSubmit.addEventListener('click', (e) => {
@@ -45,3 +60,4 @@ const enviarDatos = (emailValue, passwordValue) => {
         }
     });
 };
+//Tengo que transformar el metodo post de login y register, en login enviar los datos en el body no en la url

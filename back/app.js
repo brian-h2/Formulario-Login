@@ -46,8 +46,8 @@ app.get('/login/:email.:password',(req,res) =>  {
     } 
 })
 
-app.post('/',(req,res) =>  {
-    return res.send(204).json(users)
+app.post('/login/register/:email.:password',(req,res) =>  {
+    res.send('<h1>Registrado</h1>')
 })
 
 

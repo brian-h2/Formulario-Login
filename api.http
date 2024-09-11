@@ -3,3 +3,7 @@ GET http://localhost:3000/login
 ###
 
 GET http://localhost:3000/login/brianheredia200309@gmail.com.1234
+
+### 
+
+POST  http://localhost:3000/login/register/heredia123@gmail.com.321
