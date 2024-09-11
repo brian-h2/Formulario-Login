@@ -25,44 +25,11 @@
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
+            <button type="submit" class="btn btn-secondary" id="btn-register">Registrarse</button>
           </form>
     </main>
-    <script type="module">
-        const Email = document.getElementById('exampleInputEmail1');
-        const Password = document.getElementById('exampleInputPassword1')
-        const buttonSubmit = document.getElementById('btn-submit');
 
-    buttonSubmit.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        const passwordValue = Password.value; 
-        const emailValue = Email.value;
-        if(emailValue != "" && passwordValue != "") {
-            enviarDatos(emailValue,passwordValue)
-        } else{
-            alert("Porfavor rellene las casillas")
-        }
-    });
-    
-    const enviarDatos = (emailValue,passwordValue) => {
-        fetch(`http://localhost:3000/login/${emailValue}.${passwordValue}`, {
-            method: 'GET'
-        })
-        .then(res => {
-            if(res.ok) {
-                document.getElementById('form').style.cssText = "display: none !important;"
-                document.getElementById('home').innerHTML =  `
-                    <h1>Bienvenido a la pagina</h1>
-                `
-            } else {
-            // Si no se encuentra el usuario, devuelve un mensaje de error
-                alert('Usuario no encontrado')
-            }
-     })
-   
-    }
-
-</script>
-    <!-- <script src="../back/form.js/"></script> -->
+    <script  src="./form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
 </body>
