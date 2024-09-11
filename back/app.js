@@ -46,6 +46,10 @@ app.get('/login/:email.:password',(req,res) =>  {
     } 
 })
 
+app.post('/',(req,res) =>  {
+    return res.send(204).json(users)
+})
+
 
 app.listen(port, () => {
     console.log('Server is listening in ',port)

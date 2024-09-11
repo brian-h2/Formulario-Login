@@ -9,8 +9,9 @@
 <body>
     <main>
         <div class="home" id="home">
+
         </div>
-        <form class="w-75 d-flex flex-column m-auto" id="form">
+        <form class="w-75 d-flex flex-column m-auto" id="form-login">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -25,8 +26,25 @@
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
-            <button type="submit" class="btn btn-secondary" id="btn-register">Registrarse</button>
+
           </form>
+            <form class="w-75 d-flex flex-column m-auto" id="form-register">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword2">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-secondary" id="btn-register-user">Registrarse</button>
+            </form>
+          </div>
     </main>
 
     <script  src="./form.js"></script>

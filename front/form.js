@@ -1,31 +1,47 @@
+// Referencias a los elementos del DOM
 const Email = document.getElementById('exampleInputEmail1');
-const Password = document.getElementById('exampleInputPassword1')
+const Password = document.getElementById('exampleInputPassword1');
 const buttonSubmit = document.getElementById('btn-submit');
 
-buttonSubmit.addEventListener('click', (e) => {
-e.preventDefault(); 
-const passwordValue = Password.value; 
-const emailValue = Email.value;
-if(emailValue != "" && passwordValue != "") {
-    enviarDatos(emailValue,passwordValue)
-} else{
-    alert("Porfavor rellene las casillas")
-}
+// Referencias al registro
+
+const EmailRegister = document.getElementById('exampleInputEmail2');
+const PasswordRegister = document.getElementById('exampleInputPassword2');
+const buttonRegisterUser = document.getElementById('btn-register-user');
+
+// Mostrar el formulario de registro y ocultar los demás
+
+// Evento para el botón "Registrarse"
+buttonRegisterUser.addEventListener('click', (e) => {
+    e.preventDefault();
+
 });
 
-const enviarDatos = (emailValue,passwordValue) => {
-fetch(`http://localhost:3000/login/${emailValue}.${passwordValue}`, {
-    method: 'GET'
-})
-.then(res => {
-    if(res.ok) {
-        document.getElementById('form').style.cssText = "display: none !important;"
-        document.getElementById('home').innerHTML =  `
-            <h1>Bienvenido a la pagina</h1>
-        `
+// Evento para enviar los datos del formulario de login
+buttonSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    const passwordValue = Password.value;
+    const emailValue = Email.value;
+    if (emailValue !== "" && passwordValue !== "") {
+        enviarDatos(emailValue, passwordValue);
     } else {
-    // Si no se encuentra el usuario, devuelve un mensaje de error
-        alert('Usuario no encontrado')
+        alert("Por favor, rellene las casillas");
     }
-})
-}
+});
+
+// Función para enviar datos al servidor (login)
+const enviarDatos = (emailValue, passwordValue) => {
+    fetch(`http://localhost:3000/login/${emailValue}.${passwordValue}`, {
+        method: 'GET'
+    })
+    .then(res => {
+        if (res.ok) {
+            document.getElementById('form-login').style.display = "none !important"; // Oculta el formulario de login
+            document.getElementById('home').innerHTML = `
+                <h1>Bienvenido a la página</h1>
+            `;
+        } else {
+            alert('Usuario no encontrado');
+        }
+    });
+};
