@@ -34,14 +34,16 @@ app.get('/login',(req,res) => {
 app.get('/login/:email.:password',(req,res) =>  { 
     const email = req.params.email;
     const password = req.params.password;
-    const usuarios = users.find((element) => element.email === email && element.password.toString() === password)
-    if (usuarios) {
-        // Si el usuario se encuentra, devuelve el HTML y la información del usuario
-        res.send(`<p>Usuario encontrado:</p> <p>Email: ${usuarios.email}</p><p>Contraseña:  ${usuarios.password}`);
-    } else {
-        // Si no se encuentra el usuario, devuelve un mensaje de error
-        res.status(404).send('Usuario no encontrado');
-    }
+    if(email != "" && password != "") {
+        const usuarios = users.find((element) => element.email === email && element.password.toString() === password)
+        if (usuarios) {
+            // Si el usuario se encuentra, devuelve el HTML y la información del usuario
+           return res.sendStatus(201)
+        } else {
+            // Si no se encuentra el usuario, devuelve un mensaje de error
+            return res.status(404).send('Usuario no encontrado');
+        }
+    } 
 })
 
 
