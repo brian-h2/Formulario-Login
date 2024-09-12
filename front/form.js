@@ -20,14 +20,22 @@ buttonRegisterUser.addEventListener('click', (e) => {
 });
 
 const publicarDatos = (emailRegister,passwordRegister) => {
-    fetch(`http://localhost:3000/login/register${emailRegister}.${passwordRegister}`, {
-        method: 'POST'
+    fetch(`http://localhost:3000/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: emailRegister,
+            password: passwordRegister
+        })
+        
     })
     .then(res => {
         if (res.ok) {
             alert('Registrado correctamente')
         } else {
-            alert('Usuario no encontrado');
+            alert('Usuario ya registrado');
         }
     });
 }

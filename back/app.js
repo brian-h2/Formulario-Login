@@ -42,12 +42,29 @@ app.get('/login/:email.:password',(req,res) =>  {
         } else {
             // Si no se encuentra el usuario, devuelve un mensaje de error
             return res.status(404).send('Usuario no encontrado');
-        }
+        } 
     } 
 })
 
-app.post('/login/register/:email.:password',(req,res) =>  {
-    res.send('<h1>Registrado</h1>')
+app.post('/login',(req,res) =>  {
+    const {email,password} = req.body;
+    
+    const usuarioExistente = users.find(user => user.email === email)
+
+    if(usuarioExistente) {
+        return res.status(400).send('El email ya esta registrado')
+    }
+
+    const newUser = {
+        id: users.length + 1,
+        email: email,
+        password: password
+    }
+
+    users.push(newUser)
+    console.log(users)
+
+    res.status(201).send('Usuario registrado correctamente')
 })
 
 
