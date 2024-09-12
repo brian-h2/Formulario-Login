@@ -31,9 +31,8 @@ app.get('/login',(req,res) => {
     res.send(users).json
 })
 
-app.get('/login/:email.:password',(req,res) =>  { 
-    const email = req.params.email;
-    const password = req.params.password;
+app.get('/login',(req,res) =>  { 
+    const {email,password} = req.body
     if(email != "" && password != "") {
         const usuarios = users.find((element) => element.email === email && element.password.toString() === password)
         if (usuarios) {
@@ -62,7 +61,6 @@ app.post('/login',(req,res) =>  {
     }
 
     users.push(newUser)
-    console.log(users)
 
     res.status(201).send('Usuario registrado correctamente')
 })

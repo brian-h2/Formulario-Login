@@ -16,7 +16,11 @@ buttonRegisterUser.addEventListener('click', (e) => {
     e.preventDefault();
     const emailRegister = EmailRegister.value;
     const passwordRegister = PasswordRegister.value;
-    publicarDatos(emailRegister,passwordRegister)
+    if (emailRegister !== "" && passwordRegister !== "") {
+        publicarDatos(emailRegister,passwordRegister)
+    } else {
+        alert("Por favor, rellene las casillas");
+    }
 });
 
 const publicarDatos = (emailRegister,passwordRegister) => {
@@ -54,8 +58,16 @@ buttonSubmit.addEventListener('click', (e) => {
 
 // Función para enviar datos al servidor (login)
 const enviarDatos = (emailValue, passwordValue) => {
-    fetch(`http://localhost:3000/login/${emailValue}.${passwordValue}`, {
-        method: 'GET'
+    fetch(`http://localhost:3000/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: emailRegister,
+            password: passwordRegister
+        })
+        
     })
     .then(res => {
         if (res.ok) {
