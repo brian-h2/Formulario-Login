@@ -37,9 +37,9 @@ const publicarDatos = (emailRegister,passwordRegister) => {
     })
     .then(res => {
         if (res.ok) {
-            alert('Registrado correctamente')
+            res.text().then(message => alert(message));
         } else {
-            alert('Usuario ya registrado');
+            res.text().then(message => alert(message))
         }
     });
 }

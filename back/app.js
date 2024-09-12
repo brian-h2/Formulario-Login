@@ -66,6 +66,11 @@ app.post('/login',(req,res) =>  {
 })
 
 
+app.path('/login:id',(req,res) => {
+
+})
+
+
 app.listen(port, () => {
     console.log('Server is listening in ',port)
 })
