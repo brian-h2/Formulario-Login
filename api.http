@@ -6,4 +6,14 @@ GET http://localhost:3000/login/brianheredia200309@gmail.com.1234
 
 ### 
 
-POST  http://localhost:3000/login/register/heredia123@gmail.com.321
+POST  http://localhost:3000/login/heredia123@gmail.com.321
+
+###
+
+PATCH http://localhost:3000/login/3
+Content-Type: application/json
+
+{
+  "email": "juanito@gmail.com",
+  "password": 32
+}

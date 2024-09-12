@@ -1,5 +1,6 @@
 import express, {json} from 'express';
 import {readJSON } from './utils/lecturaJSON.js'
+import { validateUser } from './schemas/schem.js';
 import cors from 'cors';
 
 const app = express()
@@ -66,8 +67,28 @@ app.post('/login',(req,res) =>  {
 })
 
 
-app.path('/login:id',(req,res) => {
+app.patch('/login/:id',(req,res) => {
+    const result = validateUser(req.body)
+    console.log(result)
 
+    if(!result.success) {
+        res.status(400).json({ error: JSON.parse(result.error.message) })
+    } 
+
+    const {id} = req.params
+    const userIndex = users.findIndex(user => user.id.toString() === id)
+    if (userIndex === -1) {
+        return res.status(404).json({ message: 'Usuario no encontrado' })
+    }
+
+    const updateUser = {
+        ...users[userIndex],
+        ...result.data
+    }
+
+    users[userIndex] = updateUser;
+
+    return res.json(updateUser)
 })
 
 

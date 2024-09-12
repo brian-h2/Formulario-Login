@@ -2,16 +2,10 @@ import {z} from 'zod'
 
 const userSchema = z.object({
     email: z.string().email({ message: "Invalid email address" }),
-    password: z.string()
-    .min(4,'La contraseña debe tener al menos 4 caracteres')
-    .regex(/[A-Z]/, 'La contraseña debe tener al menos una letra mayúscula')
+    password: z.number().int().min(4, 'La longitud de la password debe ser mayor a 4 numeros')
 })
 
 
-function validateUser(object) {
+export function validateUser(object) {
     return userSchema.partial().safeParse(object)
-}
-
-module.exports = {
-    validateUser
 }
