@@ -23,8 +23,9 @@ buttonRegisterUser.addEventListener('click', (e) => {
     }
 });
 
+//Para publicar nuevos usuarios
 const publicarDatos = (emailRegister,passwordRegister) => {
-    fetch(`http://localhost:3000/login`, {
+    fetch(`http://localhost:3000/login/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +58,7 @@ buttonSubmit.addEventListener('click', (e) => {
 });
 
 // Función para enviar datos al servidor (login)
-const enviarDatos = (emailValue, passwordValue) => {
+const enviarDatos = (emailRegister, passwordValue) => {
     fetch(`http://localhost:3000/login`, {
         method: 'POST',
         headers: {
@@ -65,7 +66,7 @@ const enviarDatos = (emailValue, passwordValue) => {
         },
         body: JSON.stringify({
             email: emailRegister,
-            password: passwordRegister
+            password: passwordValue
         })
         
     })

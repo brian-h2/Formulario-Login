@@ -1,4 +1,4 @@
-import { Router  } from "express";
+import { json, Router  } from "express";
 import { readJSON } from "../utils/lecturaJSON.js";
 import { validateUser } from "../schemas/schem.js";
 
@@ -6,11 +6,12 @@ const users =  readJSON('../user.json');
 
 export const usersRouter = Router();
 
-usersRouter.get('/login',(req,res) => {
+usersRouter.get('/',(req,res) => {
     res.send(users).json
 })
 
-usersRouter.get('/login',(req,res) =>  { 
+//Logear Usuario
+usersRouter.post('/',(req,res) =>  { 
     const {email,password} = req.body
     if(email != "" && password != "") {
         const usuarios = users.find((element) => element.email === email && element.password.toString() === password)
@@ -24,7 +25,9 @@ usersRouter.get('/login',(req,res) =>  {
     } 
 })
 
-usersRouter.post('/login',(req,res) =>  {
+
+//Registrar usuario
+usersRouter.post('/register',(req,res) =>  {
     const {email,password} = req.body;
     
     const usuarioExistente = users.find(user => user.email === email)
@@ -42,11 +45,12 @@ usersRouter.post('/login',(req,res) =>  {
     users.push(newUser)
 
     res.status(201).send('Usuario registrado correctamente')
+    console.log(users)
 })
 
 
 
-usersRouter.patch('/login/:id',(req,res) => {
+usersRouter.patch('/:id',(req,res) => {
 
     const result = validateUser(req.body)
     

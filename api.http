@@ -1,11 +1,11 @@
 GET http://localhost:3000/login
 
 ###
-
-GET http://localhost:3000/login/brianheredia200309@gmail.com.1234
+### Iniciar Sesion
+POST http://localhost:3000/login/brianheredia200309@gmail.com.1234
 
 ### 
-
+## Registrarse
 POST  http://localhost:3000/login/heredia123@gmail.com.321
 
 ###
