@@ -1,6 +1,6 @@
-### Mini Aplicacion para manipular un json mediante metodos http
+## Mini Aplicacion para manipular un json mediante metodos http
 ---
-#### Features: 
+### Features: 
 
 - Uso de node y express con javascript puro.
 - Implementacion de modulo como zod para manejar errores y cors para admitir puertos.
