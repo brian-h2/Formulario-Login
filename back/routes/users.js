@@ -28,25 +28,26 @@ usersRouter.post('/login',(req,res) =>  {
 
 //Registrar usuario
 usersRouter.post('/register',(req,res) =>  {
-    const {password,email} = req.body;
-    const validacionRegister = validateUser(req.body)
-    console.log(password)
-    
-    //Transformar password a int, porque llega como string
+    const {email,password} = req.body
+    const validacionRegister = validateUser({password, email})
     const usuarioExistente = users.find(user => user.email === email)
 
     if(usuarioExistente) {
         return res.status(400).send('El email ya esta registrado')
     }
 
-    const newUser = {
-        id: users.length + 1,
-        ...validacionRegister
+    if(validacionRegister.success == false) {
+        res.status(400).send('Verifique los datos ingresados')
+    } else {
+        const newUser = {
+            id: users.length + 1,
+            ...validacionRegister
+        }
+    
+        users.push(newUser)
+        console.log(users)
+        res.status(201).send('Usuario registrado correctamente')
     }
-
-    users.push(newUser)
-    console.log(users)
-    res.status(201).send('Usuario registrado correctamente')
 })
 
 

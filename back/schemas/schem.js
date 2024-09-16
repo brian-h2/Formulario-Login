@@ -2,7 +2,7 @@ import {z} from 'zod'
 
 const userSchema = z.object({
     email: z.string().email({ message: "Invalid email address" }),
-    password: z.number().int().min(4, 'La longitud de la password debe ser mayor a 4 numeros')
+    password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
 })
 
 
