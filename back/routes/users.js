@@ -45,7 +45,6 @@ usersRouter.post('/register',(req,res) =>  {
         }
     
         users.push(newUser)
-        console.log(users)
         res.status(201).send('Usuario registrado correctamente')
     }
 })
