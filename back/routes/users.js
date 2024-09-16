@@ -6,12 +6,12 @@ const users =  readJSON('../user.json');
 
 export const usersRouter = Router();
 
-usersRouter.get('/',(req,res) => {
+usersRouter.get('/login',(req,res) => {
     res.send(users).json
 })
 
 //Logear Usuario
-usersRouter.post('/',(req,res) =>  { 
+usersRouter.post('/login',(req,res) =>  { 
     const {email,password} = req.body
     if(email != "" && password != "") {
         const usuarios = users.find((element) => element.email === email && element.password.toString() === password)
@@ -28,8 +28,11 @@ usersRouter.post('/',(req,res) =>  {
 
 //Registrar usuario
 usersRouter.post('/register',(req,res) =>  {
-    const {email,password} = req.body;
+    const {password,email} = req.body;
+    const validacionRegister = validateUser(req.body)
+    console.log(password)
     
+    //Transformar password a int, porque llega como string
     const usuarioExistente = users.find(user => user.email === email)
 
     if(usuarioExistente) {
@@ -38,23 +41,18 @@ usersRouter.post('/register',(req,res) =>  {
 
     const newUser = {
         id: users.length + 1,
-        email: email,
-        password: password
+        ...validacionRegister
     }
 
     users.push(newUser)
-
-    res.status(201).send('Usuario registrado correctamente')
     console.log(users)
+    res.status(201).send('Usuario registrado correctamente')
 })
 
 
-
-usersRouter.patch('/:id',(req,res) => {
+usersRouter.patch('/login/:id',(req,res) => {
 
     const result = validateUser(req.body)
-    
-    console.log(result)
 
     if(!result.success) {
         res.status(400).json({ error: JSON.parse(result.error.message) })

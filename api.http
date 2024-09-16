@@ -1,12 +1,27 @@
 GET http://localhost:3000/login
 
 ###
-### Iniciar Sesion
-POST http://localhost:3000/login/brianheredia200309@gmail.com.1234
+### Registrarse
+POST http://localhost:3000/register
+
+Content-Type: application/json
+
+{
+  "email": "hola@gmail.com",
+  "password": 1234
+}
+
 
 ### 
-## Registrarse
-POST  http://localhost:3000/login/heredia123@gmail.com.321
+## Iniciar Sesion
+POST  http://localhost:3000/login
+
+Content-Type: application/json
+
+{
+  "email": "brianheredia200309@gmail.com",
+  "password": 1234
+}
 
 ###
 

@@ -26,7 +26,7 @@ app.use(cors({
     }
 }))
 
-app.use('/login',usersRouter)
+app.use('/',usersRouter)
 
 app.listen(port, () => {
     console.log('Server is listening in ',port)

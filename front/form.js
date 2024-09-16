@@ -25,7 +25,7 @@ buttonRegisterUser.addEventListener('click', (e) => {
 
 //Para publicar nuevos usuarios
 const publicarDatos = (emailRegister,passwordRegister) => {
-    fetch(`http://localhost:3000/login/register`, {
+    fetch(`http://localhost:3000/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -37,6 +37,8 @@ const publicarDatos = (emailRegister,passwordRegister) => {
         
     })
     .then(res => {
+        console.log(passwordRegister)  
+
         if (res.ok) {
             res.text().then(message => alert(message));
         } else {
@@ -81,4 +83,3 @@ const enviarDatos = (emailRegister, passwordValue) => {
         }
     });
 };
-//Tengo que transformar el metodo post de login y register, en login enviar los datos en el body no en la url
